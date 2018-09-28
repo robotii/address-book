@@ -9,7 +9,8 @@ public class Main {
         AddressBook addressBook = reader.getAddressBook();
 
         // Get the number of males in the addressbook
-        System.out.println("Number of Males present in AddressBook = " + addressBook.countByGender("Male"));
+        System.out.println("Number of Males present in AddressBook = "
+            + addressBook.countByGender(AddressEntry.Gender.Male));
 
         // Get the oldest member
         System.out.println("Locating oldest member...");

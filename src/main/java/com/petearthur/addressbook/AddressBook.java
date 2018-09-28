@@ -12,6 +12,10 @@ public class AddressBook {
         entries = new ArrayList<>();
     }
 
+    public AddressBook(List<AddressEntry> entries) {
+        this.entries = entries;
+    }
+
     public void add(AddressEntry entry) {
         entries.add(entry);
     }
@@ -20,24 +24,23 @@ public class AddressBook {
         entries.remove(entry);
     }
 
-    public AddressBook(List<AddressEntry> entries) {
-        this.entries = entries;
-    }
-
     public Optional<AddressEntry> getOldestMember() {
         return entries
             .stream()
             .min(Comparator.comparing(AddressEntry::getBirthday));
     }
 
-    public long countByGender(String gender) {
+    public long countByGender(AddressEntry.Gender gender) {
         return entries
             .stream()
-            .filter(e -> e.getGender().equalsIgnoreCase(gender))
+            .filter(e -> e.getGender().equals(gender))
             .count();
     }
 
     public Optional<AddressEntry> getEntryByName(String name) {
-        return entries.stream().filter(e -> e.getName().equals(name)).findFirst();
+        return entries
+            .stream()
+            .filter(e -> e.getName().equals(name))
+            .findFirst();
     }
 }
