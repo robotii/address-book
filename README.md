@@ -8,6 +8,12 @@ Maven is used for the build process. To package as a jar file, run the command b
 mvn package
 ```
 
+To run the tests
+
+```bash
+mvn test
+```
+
 To execute, run the following
 
 ```bash
