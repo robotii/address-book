@@ -6,11 +6,6 @@ import java.time.temporal.ChronoUnit;
 
 public class AddressEntry {
 
-    enum Gender {
-        Male,
-        Female
-    }
-
     private final String name;
     private final Gender gender;
     private final Instant birthday;
@@ -40,6 +35,8 @@ public class AddressEntry {
 
     @Override
     public String toString() {
-        return "AddressEntry { name: " + name + ", gender: " + gender.name() + ", birthday: " + birthday.atZone(ZoneId.of("Europe/London")) + "}";
+        return "AddressEntry { name: " + name
+            + ", gender: " + gender.name()
+            + ", birthday: " + birthday.atZone(ZoneId.of("Europe/London")) + "}";
     }
 }

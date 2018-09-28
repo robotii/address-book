@@ -15,7 +15,7 @@ public class AddressEntryReader {
                 .toArray(String[]::new);
 
             if(values.length == 3) {
-                return new AddressEntry(values[0], AddressEntry.Gender.valueOf(values[1]), convertToInstant(values[2]));
+                return new AddressEntry(values[0], Gender.valueOf(values[1]), convertToInstant(values[2]));
             }
 
             throw new RuntimeException("Expected Entry length of 3, got " + values.length);

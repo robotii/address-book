@@ -6,11 +6,11 @@ public class Main {
 
     public static void main(String[] args) {
         AddressBookReader reader = new AddressBookReader(new File("data/AddressBook"));
-        AddressBook addressBook = reader.getAddressBook();
+        AddressBook addressBook = reader.toAddressBook();
 
         // Get the number of males in the addressbook
         System.out.println("Number of Males present in AddressBook = "
-            + addressBook.countByGender(AddressEntry.Gender.Male));
+            + addressBook.countByGender(Gender.Male));
 
         // Get the oldest member
         System.out.println("Locating oldest member...");

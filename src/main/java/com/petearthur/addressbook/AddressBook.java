@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class AddressBook {
     private final List<AddressEntry> entries;
@@ -30,11 +31,15 @@ public class AddressBook {
             .min(Comparator.comparing(AddressEntry::getBirthday));
     }
 
-    public long countByGender(AddressEntry.Gender gender) {
+    public long countByGender(Gender gender) {
+        return getByGender(gender).size();
+    }
+
+    private List<AddressEntry> getByGender(Gender gender) {
         return entries
             .stream()
             .filter(e -> e.getGender().equals(gender))
-            .count();
+            .collect(Collectors.toList());
     }
 
     public Optional<AddressEntry> getEntryByName(String name) {
