@@ -1,17 +1,20 @@
 package com.petearthur.addressbook;
 
-import java.time.Instant;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddressBookTest {
 
     private AddressBook addressBook;
-    private AddressEntry pete = new AddressEntry("Pete", Gender.Male, Instant.parse("1980-02-02T00:00:00.00Z"));
-    private AddressEntry bob = new AddressEntry("Bob", Gender.Male, Instant.parse("1980-02-01T00:00:00.00Z"));
-    private AddressEntry anita = new AddressEntry("Anita", Gender.Female, Instant.parse("1970-03-03T00:00:00.00Z"));
+    private final AddressEntry pete = new AddressEntry("Pete", Gender.Male, LocalDate.parse("1980-02-02"));
+    private final AddressEntry bob = new AddressEntry("Bob", Gender.Male, LocalDate.parse("1980-02-01"));
+    private final AddressEntry anita = new AddressEntry("Anita", Gender.Female, LocalDate.parse("1970-03-03"));
 
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     void setUp() {
         addressBook = new AddressBook();
         addressBook.add(pete);
@@ -19,20 +22,20 @@ class AddressBookTest {
         addressBook.add(anita);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getOldestMember() {
         AddressEntry oldestMember = addressBook.getOldestMember()
             .orElseThrow(() -> new RuntimeException("There is no oldest member"));
         assertEquals(anita, oldestMember);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void countByGender() {
         assertEquals(1, addressBook.countByGender(Gender.Female));
         assertEquals(2, addressBook.countByGender(Gender.Male));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getEntryByName() {
         AddressEntry anita = addressBook.getEntryByName("Anita")
             .orElseThrow(() -> new RuntimeException("Nobody called Anita is present"));

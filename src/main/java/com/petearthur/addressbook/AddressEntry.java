@@ -1,16 +1,15 @@
 package com.petearthur.addressbook;
 
-import java.time.Instant;
-import java.time.ZoneId;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class AddressEntry {
 
     private final String name;
     private final Gender gender;
-    private final Instant birthday;
+    private final LocalDate birthday;
 
-    public AddressEntry(String name, Gender gender, Instant birthday) {
+    public AddressEntry(String name, Gender gender, LocalDate birthday) {
 
         this.name = name;
         this.gender = gender;
@@ -25,22 +24,18 @@ public class AddressEntry {
         return gender;
     }
 
-    public Instant getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
     public long daysOlderThan(AddressEntry other) {
-        if(other.getBirthday().isBefore(birthday)) {
-            return ChronoUnit.DAYS.between(birthday, other.getBirthday()) - 1;
-        } else {
-            return ChronoUnit.DAYS.between(birthday, other.getBirthday()) + 1;
-        }
+        return ChronoUnit.DAYS.between(birthday, other.getBirthday());
     }
 
     @Override
     public String toString() {
         return "AddressEntry { name: " + name
             + ", gender: " + gender.name()
-            + ", birthday: " + birthday.atZone(ZoneId.of("Europe/London")) + "}";
+            + ", birthday: " + birthday + "}";
     }
 }
