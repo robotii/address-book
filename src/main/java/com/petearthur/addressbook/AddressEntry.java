@@ -30,7 +30,11 @@ public class AddressEntry {
     }
 
     public long daysOlderThan(AddressEntry other) {
-        return ChronoUnit.DAYS.between(birthday, other.getBirthday());
+        if(other.getBirthday().isBefore(birthday)) {
+            return ChronoUnit.DAYS.between(birthday, other.getBirthday()) - 1;
+        } else {
+            return ChronoUnit.DAYS.between(birthday, other.getBirthday()) + 1;
+        }
     }
 
     @Override
