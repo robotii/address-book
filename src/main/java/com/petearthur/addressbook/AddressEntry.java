@@ -1,6 +1,8 @@
 package com.petearthur.addressbook;
 
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 
 public class AddressEntry {
 
@@ -25,5 +27,14 @@ public class AddressEntry {
 
     public Instant getBirthday() {
         return birthday;
+    }
+
+    public long daysOlderThan(AddressEntry other) {
+        return ChronoUnit.DAYS.between(birthday, other.getBirthday());
+    }
+
+    @Override
+    public String toString() {
+        return "AddressEntry { name: " + name + ", gender: " + gender + ", birthday: " + birthday.atZone(ZoneId.of("Europe/London")) + "}";
     }
 }

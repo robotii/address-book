@@ -10,7 +10,8 @@ import java.util.stream.Collectors;
 public class AddressEntryReader {
     public static AddressEntry entryFromLine(String line) {
         try {
-            String[] values = line.split(",");
+            String[] values = Arrays.stream(line.split(",")).map(String::trim).toArray(String[]::new);
+
             if(values.length != 3) {
                 throw new RuntimeException("Entry is invalid");
             }
